@@ -67,5 +67,3 @@ L & E Insight Dashboard is a comprehensive management platform designed for car 
 - Ready for deployment on any static hosting (Vercel, Netlify, etc.).
 
 ---
-
-© 2024 Luxe Wheels Insight Dashboard. All rights reserved.
