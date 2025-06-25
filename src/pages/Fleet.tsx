@@ -13,16 +13,16 @@ const Fleet = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const vehicles = [
-    { id: 1, model: 'BMW 7 Series', type: 'Luxury Car', category: 'car', status: 'Available', location: 'London', price: '£150/day', image: '/placeholder.svg' },
-    { id: 2, model: 'Mercedes S-Class', type: 'Luxury Car', category: 'car', status: 'Rented', location: 'Manchester', price: '£180/day', image: '/placeholder.svg' },
-    { id: 3, model: 'Toyota Camry', type: 'Economy Car', category: 'car', status: 'Available', location: 'Birmingham', price: '£45/day', image: '/placeholder.svg' },
-    { id: 4, model: 'Audi A8', type: 'Luxury Car', category: 'car', status: 'Maintenance', location: 'London', price: '£160/day', image: '/placeholder.svg' },
-    { id: 5, model: 'Ford Focus', type: 'Economy Car', category: 'car', status: 'Available', location: 'Liverpool', price: '£35/day', image: '/placeholder.svg' },
-    { id: 6, model: 'Bentley Flying Spur', type: 'Premium Car', category: 'car', status: 'Available', location: 'London', price: '£300/day', image: '/placeholder.svg' },
-    { id: 7, model: 'Robinson R44', type: 'Light Helicopter', category: 'helicopter', status: 'Available', location: 'London Heliport', price: '£1,200/hour', image: '/placeholder.svg' },
-    { id: 8, model: 'Eurocopter AS350', type: 'Twin Engine Helicopter', category: 'helicopter', status: 'Available', location: 'Manchester Airport', price: '£2,500/hour', image: '/placeholder.svg' },
-    { id: 9, model: 'Bell 407', type: 'Executive Helicopter', category: 'helicopter', status: 'Rented', location: 'Birmingham', price: '£3,200/hour', image: '/placeholder.svg' },
-    { id: 10, model: 'Airbus H125', type: 'Single Engine Helicopter', category: 'helicopter', status: 'Maintenance', location: 'London Heliport', price: '£2,800/hour', image: '/placeholder.svg' },
+    { id: 1, model: 'Toyota Land Cruiser V8', type: 'Luxury SUV', category: 'car', status: 'Available', location: 'Nairobi CBD', price: 'KSh 15,000/day', image: '/placeholder.svg' },
+    { id: 2, model: 'Mercedes Benz E-Class', type: 'Luxury Car', category: 'car', status: 'Rented', location: 'Westlands', price: 'KSh 12,000/day', image: '/placeholder.svg' },
+    { id: 3, model: 'Toyota Corolla', type: 'Economy Car', category: 'car', status: 'Available', location: 'Mombasa', price: 'KSh 4,500/day', image: '/placeholder.svg' },
+    { id: 4, model: 'Range Rover Sport', type: 'Luxury SUV', category: 'car', status: 'Maintenance', location: 'Karen', price: 'KSh 18,000/day', image: '/placeholder.svg' },
+    { id: 5, model: 'Nissan Note', type: 'Economy Car', category: 'car', status: 'Available', location: 'Kisumu', price: 'KSh 3,500/day', image: '/placeholder.svg' },
+    { id: 6, model: 'BMW X5', type: 'Luxury SUV', category: 'car', status: 'Available', location: 'Nairobi CBD', price: 'KSh 16,000/day', image: '/placeholder.svg' },
+    { id: 7, model: 'Robinson R44', type: 'Light Helicopter', category: 'helicopter', status: 'Available', location: 'Wilson Airport', price: 'KSh 120,000/hour', image: '/placeholder.svg' },
+    { id: 8, model: 'Eurocopter AS350', type: 'Twin Engine Helicopter', category: 'helicopter', status: 'Available', location: 'JKIA', price: 'KSh 250,000/hour', image: '/placeholder.svg' },
+    { id: 9, model: 'Bell 407', type: 'Executive Helicopter', category: 'helicopter', status: 'Rented', location: 'Mombasa Airport', price: 'KSh 320,000/hour', image: '/placeholder.svg' },
+    { id: 10, model: 'Airbus H125', type: 'Single Engine Helicopter', category: 'helicopter', status: 'Maintenance', location: 'Wilson Airport', price: 'KSh 280,000/hour', image: '/placeholder.svg' },
   ];
 
   const getStatusColor = (status: string) => {

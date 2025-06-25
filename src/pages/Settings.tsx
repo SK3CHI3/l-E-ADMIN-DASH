@@ -14,10 +14,10 @@ import { useToast } from '@/hooks/use-toast';
 const Settings = () => {
   const { toast } = useToast();
   const [settings, setSettings] = useState({
-    companyName: 'L&E - Luxury & Economy Care Hire',
-    email: 'admin@luxuryeconomy.com',
-    phone: '+44 20 1234 5678',
-    address: '123 Luxury Lane, London, UK',
+    companyName: 'L&E - Luxury & Economy Car Hire',
+    email: 'admin@luxuryeconomy.co.ke',
+    phone: '+254 20 1234 5678',
+    address: '123 Uhuru Highway, Nairobi, Kenya',
     notifications: {
       emailBookings: true,
       emailPayments: true,

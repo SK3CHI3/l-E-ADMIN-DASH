@@ -13,14 +13,14 @@ const Bookings = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const bookings = [
-    { id: 'BK001', customer: 'John Smith', vehicle: 'BMW 7 Series', category: 'car', startDate: '2024-06-26', endDate: '2024-06-30', status: 'Active', amount: '£600' },
-    { id: 'BK002', customer: 'Sarah Johnson', vehicle: 'Mercedes S-Class', category: 'car', startDate: '2024-06-25', endDate: '2024-06-28', status: 'Completed', amount: '£540' },
-    { id: 'BK003', customer: 'Mike Wilson', vehicle: 'Toyota Camry', category: 'car', startDate: '2024-06-27', endDate: '2024-07-01', status: 'Pending', amount: '£180' },
-    { id: 'BK004', customer: 'Emily Davis', vehicle: 'Audi A8', category: 'car', startDate: '2024-06-28', endDate: '2024-07-02', status: 'Confirmed', amount: '£640' },
-    { id: 'BK005', customer: 'David Brown', vehicle: 'Ford Focus', category: 'car', startDate: '2024-06-26', endDate: '2024-06-29', status: 'Active', amount: '£105' },
-    { id: 'HB001', customer: 'Richard Thompson', vehicle: 'Robinson R44', category: 'helicopter', startDate: '2024-06-26', endDate: '2024-06-26', status: 'Active', amount: '£3,600' },
-    { id: 'HB002', customer: 'Victoria Clarke', vehicle: 'Eurocopter AS350', category: 'helicopter', startDate: '2024-06-28', endDate: '2024-06-28', status: 'Confirmed', amount: '£7,500' },
-    { id: 'HB003', customer: 'James Martinez', vehicle: 'Bell 407', category: 'helicopter', startDate: '2024-06-25', endDate: '2024-06-25', status: 'Completed', amount: '£9,600' },
+    { id: 'BK001', customer: 'John Kamau', vehicle: 'Toyota Land Cruiser V8', category: 'car', startDate: '2024-06-26', endDate: '2024-06-30', status: 'Active', amount: 'KSh 60,000' },
+    { id: 'BK002', customer: 'Grace Wanjiku', vehicle: 'Mercedes Benz E-Class', category: 'car', startDate: '2024-06-25', endDate: '2024-06-28', status: 'Completed', amount: 'KSh 36,000' },
+    { id: 'BK003', customer: 'Peter Mwangi', vehicle: 'Toyota Corolla', category: 'car', startDate: '2024-06-27', endDate: '2024-07-01', status: 'Pending', amount: 'KSh 18,000' },
+    { id: 'BK004', customer: 'Mary Njeri', vehicle: 'Range Rover Sport', category: 'car', startDate: '2024-06-28', endDate: '2024-07-02', status: 'Confirmed', amount: 'KSh 72,000' },
+    { id: 'BK005', customer: 'David Kiptoo', vehicle: 'Nissan Note', category: 'car', startDate: '2024-06-26', endDate: '2024-06-29', status: 'Active', amount: 'KSh 10,500' },
+    { id: 'HB001', customer: 'James Ochieng', vehicle: 'Robinson R44', category: 'helicopter', startDate: '2024-06-26', endDate: '2024-06-26', status: 'Active', amount: 'KSh 360,000' },
+    { id: 'HB002', customer: 'Susan Akinyi', vehicle: 'Eurocopter AS350', category: 'helicopter', startDate: '2024-06-28', endDate: '2024-06-28', status: 'Confirmed', amount: 'KSh 750,000' },
+    { id: 'HB003', customer: 'Michael Kimani', vehicle: 'Bell 407', category: 'helicopter', startDate: '2024-06-25', endDate: '2024-06-25', status: 'Completed', amount: 'KSh 960,000' },
   ];
 
   const getStatusColor = (status: string) => {

@@ -33,7 +33,7 @@ const metrics = [
   },
   {
     title: "Monthly Revenue",
-    value: "£224,500",
+    value: "KSh 2,245,000",
     change: "+18.1%",
     trend: "up",
     icon: DollarSign,

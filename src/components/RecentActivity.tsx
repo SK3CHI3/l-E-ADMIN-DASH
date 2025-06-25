@@ -8,7 +8,7 @@ const activities = [
   {
     id: 1,
     type: 'booking',
-    title: 'New helicopter booking: Bell 407 for Richard Thompson',
+    title: 'New helicopter booking: Bell 407 for Peter Mwangi',
     time: '2 minutes ago',
     status: 'confirmed',
     icon: Plane,
@@ -17,7 +17,7 @@ const activities = [
   {
     id: 2,
     type: 'payment',
-    title: 'Payment received: £9,600 from James Martinez (Helicopter)',
+    title: 'Payment received: KSh 480,000 from Grace Wanjiku (Helicopter)',
     time: '15 minutes ago',
     status: 'completed',
     icon: CreditCard,
@@ -26,7 +26,7 @@ const activities = [
   {
     id: 3,
     type: 'booking',
-    title: 'New car booking: BMW X5 for John Smith',
+    title: 'New car booking: Toyota Prado for John Kamau',
     time: '1 hour ago',
     status: 'confirmed',
     icon: Car,
@@ -35,7 +35,7 @@ const activities = [
   {
     id: 4,
     type: 'user',
-    title: 'New customer registration: Mike Johnson',
+    title: 'New customer registration: Mary Njeri',
     time: '2 hours ago',
     status: 'verified',
     icon: User,
@@ -44,7 +44,7 @@ const activities = [
   {
     id: 5,
     type: 'booking',
-    title: 'Helicopter booking completed: Robinson R44 for Victoria Clarke',
+    title: 'Helicopter booking completed: Robinson R44 for David Kiptoo',
     time: '3 hours ago',
     status: 'completed',
     icon: Plane,

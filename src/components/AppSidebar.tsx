@@ -98,7 +98,7 @@ export function AppSidebar() {
             <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               L&E Admin
             </h1>
-            <p className="text-sm text-gray-500">Luxury & Economy Vehicle Hire</p>
+            <p className="text-sm text-gray-500">Luxury & Economy Car Hire</p>
           </div>
         </div>
       </SidebarHeader>

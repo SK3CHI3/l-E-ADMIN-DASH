@@ -13,7 +13,7 @@ export function DashboardHeader() {
           <SidebarTrigger className="lg:hidden" />
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-            <p className="text-gray-500">Welcome to L&E - Luxury & Economy Care Hire Platform</p>
+            <p className="text-gray-500">Welcome to L&E - Luxury & Economy Car Hire Platform</p>
           </div>
         </div>
 
