@@ -1,4 +1,4 @@
-# Luxe Wheels Insight Dashboard
+# L & E Insight Dashboard
 
 A modern fleet and booking management dashboard for luxury and economy car and helicopter rentals.
 
