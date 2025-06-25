@@ -24,7 +24,7 @@ import {
   Trophy,
   CreditCard
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const menuItems = [
   {
@@ -76,10 +76,15 @@ const menuItems = [
 
 export function AppSidebar() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = () => {
     localStorage.removeItem('isAuthenticated');
     navigate('/');
+  };
+
+  const handleNavigation = (url: string) => {
+    navigate(url);
   };
 
   return (
@@ -108,13 +113,15 @@ export function AppSidebar() {
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton 
-                    asChild 
-                    className="hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-blue-600 transition-all duration-200"
+                    onClick={() => handleNavigation(item.url)}
+                    className={`hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-blue-600 transition-all duration-200 cursor-pointer ${
+                      location.pathname === item.url ? 'bg-gradient-to-r from-blue-50 to-purple-50 text-blue-600' : ''
+                    }`}
                   >
-                    <a href={item.url} className="flex items-center space-x-3 px-3 py-2 rounded-lg">
+                    <div className="flex items-center space-x-3 px-3 py-2 rounded-lg">
                       <item.icon className="h-5 w-5" />
                       <span className="font-medium">{item.title}</span>
-                    </a>
+                    </div>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
