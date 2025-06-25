@@ -4,7 +4,7 @@ A modern fleet and booking management dashboard for luxury and economy car and h
 
 ## Project Overview
 
-Luxe Wheels Insight Dashboard is a comprehensive management platform designed for car and helicopter rental businesses. It provides real-time analytics, customer management, booking operations, loyalty tracking, and more—all in a beautiful, responsive interface.
+L & E Insight Dashboard is a comprehensive management platform designed for car and helicopter rental businesses. It provides real-time analytics, customer management, booking operations, loyalty tracking, and more—all in a beautiful, responsive interface.
 
 ## Features
 
