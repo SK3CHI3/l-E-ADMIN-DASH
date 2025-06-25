@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
@@ -35,7 +34,7 @@ const Revenue = () => {
     { vehicle: 'Mercedes S-Class', revenue: '£42,300', bookings: 128 },
     { vehicle: 'Bentley Flying Spur', revenue: '£38,900', bookings: 89 },
     { vehicle: 'Audi A8', revenue: '£35,200', bookings: 156 },
-    { vehicle: 'Range Rover', vehicle: '£32,800', bookings: 134 },
+    { vehicle: 'Range Rover', revenue: '£32,800', bookings: 134 },
   ];
 
   return (
