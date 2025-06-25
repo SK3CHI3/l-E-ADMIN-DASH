@@ -2,22 +2,22 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Car, User, CreditCard, Clock } from 'lucide-react';
+import { Car, Plane, User, CreditCard, Clock } from 'lucide-react';
 
 const activities = [
   {
     id: 1,
     type: 'booking',
-    title: 'New booking: BMW X5 for John Smith',
+    title: 'New helicopter booking: Bell 407 for Richard Thompson',
     time: '2 minutes ago',
     status: 'confirmed',
-    icon: Car,
-    color: 'bg-blue-500',
+    icon: Plane,
+    color: 'bg-purple-500',
   },
   {
     id: 2,
     type: 'payment',
-    title: 'Payment received: $450 from Sarah Wilson',
+    title: 'Payment received: £9,600 from James Martinez (Helicopter)',
     time: '15 minutes ago',
     status: 'completed',
     icon: CreditCard,
@@ -25,30 +25,30 @@ const activities = [
   },
   {
     id: 3,
-    type: 'user',
-    title: 'New customer registration: Mike Johnson',
+    type: 'booking',
+    title: 'New car booking: BMW X5 for John Smith',
     time: '1 hour ago',
-    status: 'verified',
-    icon: User,
-    color: 'bg-purple-500',
+    status: 'confirmed',
+    icon: Car,
+    color: 'bg-blue-500',
   },
   {
     id: 4,
-    type: 'booking',
-    title: 'Booking completed: Tesla Model S for Emma Davis',
+    type: 'user',
+    title: 'New customer registration: Mike Johnson',
     time: '2 hours ago',
-    status: 'completed',
-    icon: Car,
-    color: 'bg-orange-500',
+    status: 'verified',
+    icon: User,
+    color: 'bg-indigo-500',
   },
   {
     id: 5,
     type: 'booking',
-    title: 'Booking cancelled: Mercedes C-Class for Tom Brown',
+    title: 'Helicopter booking completed: Robinson R44 for Victoria Clarke',
     time: '3 hours ago',
-    status: 'cancelled',
-    icon: Car,
-    color: 'bg-red-500',
+    status: 'completed',
+    icon: Plane,
+    color: 'bg-orange-500',
   },
 ];
 

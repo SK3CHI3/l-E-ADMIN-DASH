@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/sidebar';
 import { 
   LayoutDashboard, 
-  Car, 
+  Plane, 
   Users, 
   CalendarDays, 
   PieChart, 
@@ -35,7 +35,7 @@ const menuItems = [
   {
     title: "Fleet Management",
     url: "/fleet",
-    icon: Car,
+    icon: Plane,
   },
   {
     title: "Bookings",
@@ -92,13 +92,13 @@ export function AppSidebar() {
       <SidebarHeader className="p-6">
         <div className="flex items-center space-x-3">
           <div className="p-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl">
-            <Car className="h-6 w-6 text-white" />
+            <Plane className="h-6 w-6 text-white" />
           </div>
           <div>
             <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               L&E Admin
             </h1>
-            <p className="text-sm text-gray-500">Luxury & Economy Care Hire</p>
+            <p className="text-sm text-gray-500">Luxury & Economy Vehicle Hire</p>
           </div>
         </div>
       </SidebarHeader>

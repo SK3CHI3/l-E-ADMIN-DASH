@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
@@ -8,33 +9,36 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 const Revenue = () => {
   const revenueStats = [
-    { title: 'Total Revenue', value: '£485,200', change: '+18%', icon: DollarSign },
-    { title: 'Monthly Revenue', value: '£52,800', change: '+12%', icon: CreditCard },
-    { title: 'Average Booking', value: '£320', change: '+5%', icon: TrendingUp },
+    { title: 'Total Revenue', value: '£1,285,200', change: '+18%', icon: DollarSign },
+    { title: 'Monthly Revenue', value: '£152,800', change: '+12%', icon: CreditCard },
+    { title: 'Average Booking', value: '£820', change: '+5%', icon: TrendingUp },
     { title: 'Revenue Growth', value: '24%', change: '+3%', icon: Calendar },
   ];
 
   const monthlyData = [
-    { month: 'Jan', revenue: 42000, bookings: 125 },
-    { month: 'Feb', revenue: 38000, bookings: 118 },
-    { month: 'Mar', revenue: 45000, bookings: 142 },
-    { month: 'Apr', revenue: 48000, bookings: 156 },
-    { month: 'May', revenue: 52000, bookings: 168 },
-    { month: 'Jun', revenue: 55000, bookings: 175 },
+    { month: 'Jan', carRevenue: 42000, helicopterRevenue: 85000, bookings: 125 },
+    { month: 'Feb', carRevenue: 38000, helicopterRevenue: 92000, bookings: 118 },
+    { month: 'Mar', carRevenue: 45000, helicopterRevenue: 105000, bookings: 142 },
+    { month: 'Apr', carRevenue: 48000, helicopterRevenue: 112000, bookings: 156 },
+    { month: 'May', carRevenue: 52000, helicopterRevenue: 125000, bookings: 168 },
+    { month: 'Jun', carRevenue: 55000, helicopterRevenue: 135000, bookings: 175 },
   ];
 
   const vehicleTypeRevenue = [
-    { name: 'Luxury', value: 285000, color: '#8B5CF6' },
-    { name: 'Premium', value: 150000, color: '#3B82F6' },
-    { name: 'Economy', value: 50200, color: '#10B981' },
+    { name: 'Luxury Cars', value: 285000, color: '#8B5CF6' },
+    { name: 'Premium Cars', value: 150000, color: '#3B82F6' },
+    { name: 'Economy Cars', value: 50200, color: '#10B981' },
+    { name: 'Executive Helicopters', value: 420000, color: '#F59E0B' },
+    { name: 'Light Helicopters', value: 180000, color: '#EF4444' },
+    { name: 'Twin Engine Helicopters', value: 320000, color: '#8B5CF6' },
   ];
 
   const topPerformers = [
+    { vehicle: 'Bell 407 (Helicopter)', revenue: '£125,600', bookings: 42 },
+    { vehicle: 'Eurocopter AS350', revenue: '£98,300', bookings: 38 },
     { vehicle: 'BMW 7 Series', revenue: '£45,600', bookings: 142 },
-    { vehicle: 'Mercedes S-Class', revenue: '£42,300', bookings: 128 },
-    { vehicle: 'Bentley Flying Spur', revenue: '£38,900', bookings: 89 },
-    { vehicle: 'Audi A8', revenue: '£35,200', bookings: 156 },
-    { vehicle: 'Range Rover', revenue: '£32,800', bookings: 134 },
+    { vehicle: 'Robinson R44', revenue: '£42,300', bookings: 65 },
+    { vehicle: 'Mercedes S-Class', revenue: '£38,900', bookings: 128 },
   ];
 
   return (
@@ -47,7 +51,7 @@ const Revenue = () => {
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-3xl font-bold text-gray-900">Revenue Analytics</h1>
-                <p className="text-gray-500 mt-1">Track financial performance and growth</p>
+                <p className="text-gray-500 mt-1">Track financial performance across cars and helicopters</p>
               </div>
             </div>
 
@@ -76,7 +80,7 @@ const Revenue = () => {
               <Card>
                 <CardHeader>
                   <CardTitle>Monthly Revenue Trend</CardTitle>
-                  <CardDescription>Revenue and booking trends over time</CardDescription>
+                  <CardDescription>Revenue trends for cars vs helicopters</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ResponsiveContainer width="100%" height={300}>
@@ -85,7 +89,8 @@ const Revenue = () => {
                       <XAxis dataKey="month" />
                       <YAxis />
                       <Tooltip formatter={(value, name) => [`£${value.toLocaleString()}`, name]} />
-                      <Line type="monotone" dataKey="revenue" stroke="#3B82F6" strokeWidth={3} />
+                      <Line type="monotone" dataKey="carRevenue" stroke="#3B82F6" strokeWidth={3} name="Car Revenue" />
+                      <Line type="monotone" dataKey="helicopterRevenue" stroke="#F59E0B" strokeWidth={3} name="Helicopter Revenue" />
                     </LineChart>
                   </ResponsiveContainer>
                 </CardContent>
@@ -94,7 +99,7 @@ const Revenue = () => {
               <Card>
                 <CardHeader>
                   <CardTitle>Revenue by Vehicle Type</CardTitle>
-                  <CardDescription>Distribution of revenue across vehicle categories</CardDescription>
+                  <CardDescription>Distribution across all vehicle categories</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ResponsiveContainer width="100%" height={300}>
@@ -124,7 +129,7 @@ const Revenue = () => {
               <Card>
                 <CardHeader>
                   <CardTitle>Monthly Bookings</CardTitle>
-                  <CardDescription>Number of bookings per month</CardDescription>
+                  <CardDescription>Total bookings across all vehicles</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ResponsiveContainer width="100%" height={300}>

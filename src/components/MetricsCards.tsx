@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Car, Users, CalendarDays, DollarSign, TrendingUp, TrendingDown } from 'lucide-react';
+import { Car, Plane, Users, CalendarDays, DollarSign, TrendingUp, TrendingDown } from 'lucide-react';
 
 const metrics = [
   {
@@ -33,9 +33,9 @@ const metrics = [
   },
   {
     title: "Monthly Revenue",
-    value: "$124,500",
-    change: "-2.1%",
-    trend: "down",
+    value: "£224,500",
+    change: "+18.1%",
+    trend: "up",
     icon: DollarSign,
     gradient: "from-orange-500 to-orange-600",
     bgGradient: "from-orange-50 to-orange-100",

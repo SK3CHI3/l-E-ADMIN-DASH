@@ -7,18 +7,22 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Car, Plus, Search, Edit, Trash2, MapPin } from 'lucide-react';
+import { Car, Plane, Plus, Search, Edit, Trash2, MapPin } from 'lucide-react';
 
 const Fleet = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const vehicles = [
-    { id: 1, model: 'BMW 7 Series', type: 'Luxury', status: 'Available', location: 'London', price: '£150/day', image: '/placeholder.svg' },
-    { id: 2, model: 'Mercedes S-Class', type: 'Luxury', status: 'Rented', location: 'Manchester', price: '£180/day', image: '/placeholder.svg' },
-    { id: 3, model: 'Toyota Camry', type: 'Economy', status: 'Available', location: 'Birmingham', price: '£45/day', image: '/placeholder.svg' },
-    { id: 4, model: 'Audi A8', type: 'Luxury', status: 'Maintenance', location: 'London', price: '£160/day', image: '/placeholder.svg' },
-    { id: 5, model: 'Ford Focus', type: 'Economy', status: 'Available', location: 'Liverpool', price: '£35/day', image: '/placeholder.svg' },
-    { id: 6, model: 'Bentley Flying Spur', type: 'Premium', status: 'Available', location: 'London', price: '£300/day', image: '/placeholder.svg' },
+    { id: 1, model: 'BMW 7 Series', type: 'Luxury Car', category: 'car', status: 'Available', location: 'London', price: '£150/day', image: '/placeholder.svg' },
+    { id: 2, model: 'Mercedes S-Class', type: 'Luxury Car', category: 'car', status: 'Rented', location: 'Manchester', price: '£180/day', image: '/placeholder.svg' },
+    { id: 3, model: 'Toyota Camry', type: 'Economy Car', category: 'car', status: 'Available', location: 'Birmingham', price: '£45/day', image: '/placeholder.svg' },
+    { id: 4, model: 'Audi A8', type: 'Luxury Car', category: 'car', status: 'Maintenance', location: 'London', price: '£160/day', image: '/placeholder.svg' },
+    { id: 5, model: 'Ford Focus', type: 'Economy Car', category: 'car', status: 'Available', location: 'Liverpool', price: '£35/day', image: '/placeholder.svg' },
+    { id: 6, model: 'Bentley Flying Spur', type: 'Premium Car', category: 'car', status: 'Available', location: 'London', price: '£300/day', image: '/placeholder.svg' },
+    { id: 7, model: 'Robinson R44', type: 'Light Helicopter', category: 'helicopter', status: 'Available', location: 'London Heliport', price: '£1,200/hour', image: '/placeholder.svg' },
+    { id: 8, model: 'Eurocopter AS350', type: 'Twin Engine Helicopter', category: 'helicopter', status: 'Available', location: 'Manchester Airport', price: '£2,500/hour', image: '/placeholder.svg' },
+    { id: 9, model: 'Bell 407', type: 'Executive Helicopter', category: 'helicopter', status: 'Rented', location: 'Birmingham', price: '£3,200/hour', image: '/placeholder.svg' },
+    { id: 10, model: 'Airbus H125', type: 'Single Engine Helicopter', category: 'helicopter', status: 'Maintenance', location: 'London Heliport', price: '£2,800/hour', image: '/placeholder.svg' },
   ];
 
   const getStatusColor = (status: string) => {
@@ -32,7 +36,8 @@ const Fleet = () => {
 
   const filteredVehicles = vehicles.filter(vehicle =>
     vehicle.model.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    vehicle.type.toLowerCase().includes(searchTerm.toLowerCase())
+    vehicle.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    vehicle.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -45,7 +50,7 @@ const Fleet = () => {
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-3xl font-bold text-gray-900">Fleet Management</h1>
-                <p className="text-gray-500 mt-1">Manage your vehicle inventory</p>
+                <p className="text-gray-500 mt-1">Manage your cars and helicopters</p>
               </div>
               <Button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700">
                 <Plus className="h-4 w-4 mr-2" />
@@ -70,7 +75,11 @@ const Fleet = () => {
                 <Card key={vehicle.id} className="hover:shadow-lg transition-shadow">
                   <CardHeader className="pb-3">
                     <div className="flex items-center justify-between">
-                      <Car className="h-8 w-8 text-blue-600" />
+                      {vehicle.category === 'car' ? (
+                        <Car className="h-8 w-8 text-blue-600" />
+                      ) : (
+                        <Plane className="h-8 w-8 text-purple-600" />
+                      )}
                       <Badge className={getStatusColor(vehicle.status)}>
                         {vehicle.status}
                       </Badge>

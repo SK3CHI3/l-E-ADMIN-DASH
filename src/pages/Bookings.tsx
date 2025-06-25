@@ -7,17 +7,20 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { CalendarDays, Search, Eye, Edit, Car, User, Clock } from 'lucide-react';
+import { CalendarDays, Search, Eye, Edit, Car, Plane, User, Clock } from 'lucide-react';
 
 const Bookings = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const bookings = [
-    { id: 'BK001', customer: 'John Smith', vehicle: 'BMW 7 Series', startDate: '2024-06-26', endDate: '2024-06-30', status: 'Active', amount: '£600' },
-    { id: 'BK002', customer: 'Sarah Johnson', vehicle: 'Mercedes S-Class', startDate: '2024-06-25', endDate: '2024-06-28', status: 'Completed', amount: '£540' },
-    { id: 'BK003', customer: 'Mike Wilson', vehicle: 'Toyota Camry', startDate: '2024-06-27', endDate: '2024-07-01', status: 'Pending', amount: '£180' },
-    { id: 'BK004', customer: 'Emily Davis', vehicle: 'Audi A8', startDate: '2024-06-28', endDate: '2024-07-02', status: 'Confirmed', amount: '£640' },
-    { id: 'BK005', customer: 'David Brown', vehicle: 'Ford Focus', startDate: '2024-06-26', endDate: '2024-06-29', status: 'Active', amount: '£105' },
+    { id: 'BK001', customer: 'John Smith', vehicle: 'BMW 7 Series', category: 'car', startDate: '2024-06-26', endDate: '2024-06-30', status: 'Active', amount: '£600' },
+    { id: 'BK002', customer: 'Sarah Johnson', vehicle: 'Mercedes S-Class', category: 'car', startDate: '2024-06-25', endDate: '2024-06-28', status: 'Completed', amount: '£540' },
+    { id: 'BK003', customer: 'Mike Wilson', vehicle: 'Toyota Camry', category: 'car', startDate: '2024-06-27', endDate: '2024-07-01', status: 'Pending', amount: '£180' },
+    { id: 'BK004', customer: 'Emily Davis', vehicle: 'Audi A8', category: 'car', startDate: '2024-06-28', endDate: '2024-07-02', status: 'Confirmed', amount: '£640' },
+    { id: 'BK005', customer: 'David Brown', vehicle: 'Ford Focus', category: 'car', startDate: '2024-06-26', endDate: '2024-06-29', status: 'Active', amount: '£105' },
+    { id: 'HB001', customer: 'Richard Thompson', vehicle: 'Robinson R44', category: 'helicopter', startDate: '2024-06-26', endDate: '2024-06-26', status: 'Active', amount: '£3,600' },
+    { id: 'HB002', customer: 'Victoria Clarke', vehicle: 'Eurocopter AS350', category: 'helicopter', startDate: '2024-06-28', endDate: '2024-06-28', status: 'Confirmed', amount: '£7,500' },
+    { id: 'HB003', customer: 'James Martinez', vehicle: 'Bell 407', category: 'helicopter', startDate: '2024-06-25', endDate: '2024-06-25', status: 'Completed', amount: '£9,600' },
   ];
 
   const getStatusColor = (status: string) => {
@@ -33,7 +36,8 @@ const Bookings = () => {
   const filteredBookings = bookings.filter(booking =>
     booking.customer.toLowerCase().includes(searchTerm.toLowerCase()) ||
     booking.vehicle.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    booking.id.toLowerCase().includes(searchTerm.toLowerCase())
+    booking.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    booking.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -46,7 +50,7 @@ const Bookings = () => {
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-3xl font-bold text-gray-900">Bookings</h1>
-                <p className="text-gray-500 mt-1">Manage customer reservations</p>
+                <p className="text-gray-500 mt-1">Manage customer reservations for cars and helicopters</p>
               </div>
             </div>
 
@@ -70,6 +74,12 @@ const Bookings = () => {
                       <div className="flex items-center space-x-2">
                         <CalendarDays className="h-5 w-5 text-blue-600" />
                         <CardTitle className="text-lg">{booking.id}</CardTitle>
+                        {booking.category === 'helicopter' && (
+                          <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">
+                            <Plane className="h-3 w-3 mr-1" />
+                            Helicopter
+                          </Badge>
+                        )}
                       </div>
                       <Badge className={getStatusColor(booking.status)}>
                         {booking.status}
@@ -84,7 +94,11 @@ const Bookings = () => {
                         <span className="font-medium">{booking.customer}</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <Car className="h-4 w-4 text-gray-500" />
+                        {booking.category === 'car' ? (
+                          <Car className="h-4 w-4 text-gray-500" />
+                        ) : (
+                          <Plane className="h-4 w-4 text-gray-500" />
+                        )}
                         <span className="text-sm text-gray-500">Vehicle:</span>
                         <span className="font-medium">{booking.vehicle}</span>
                       </div>
