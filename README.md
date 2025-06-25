@@ -1,73 +1,73 @@
-# Welcome to your Lovable project
+# Luxe Wheels Insight Dashboard
 
-## Project info
+A modern fleet and booking management dashboard for luxury and economy car and helicopter rentals.
 
-**URL**: https://lovable.dev/projects/99d0231b-99ee-4f24-916e-39aedfecd3a9
+## Project Overview
 
-## How can I edit this code?
+Luxe Wheels Insight Dashboard is a comprehensive management platform designed for car and helicopter rental businesses. It provides real-time analytics, customer management, booking operations, loyalty tracking, and more—all in a beautiful, responsive interface.
 
-There are several ways of editing your application.
+## Features
 
-**Use Lovable**
+- **Authentication:** Secure login and protected routes
+- **Dashboard:** Key metrics, charts, recent activity, and quick stats
+- **Fleet Management:** Manage cars and helicopters, search, add, edit, and view status
+- **Bookings:** Manage and search bookings for all vehicles
+- **Customers:** Manage customer profiles, bookings, and ratings
+- **Loyalty Program:** Track points, rewards, and tier benefits for top customers
+- **Revenue Analytics:** Visualize revenue, bookings, and top-performing vehicles
+- **Business Analytics:** Insights into customer retention, fleet utilization, and booking trends
+- **Messages:** Customer support and communication center
+- **Settings:** Company info, notification preferences, appearance, and security settings
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/99d0231b-99ee-4f24-916e-39aedfecd3a9) and start prompting.
+## Tech Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+- **React 18** + **TypeScript**
+- **Vite** (fast development/build tool)
+- **Tailwind CSS** (utility-first styling)
+- **shadcn/ui** (component library)
+- **Radix UI** (accessible UI primitives)
+- **Recharts** (data visualization)
+- **React Query** (data fetching/caching)
+- **React Router** (routing)
+- **Lucide React** (icons)
 
-**Use your preferred IDE**
+## Getting Started
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+1. **Clone the repository:**
+   ```sh
+   git clone <YOUR_GIT_URL>
+   cd luxe-wheels-insight-dashboard
+   ```
+2. **Install dependencies:**
+   ```sh
+   npm install
+   ```
+3. **Start the development server:**
+   ```sh
+   npm run dev
+   ```
+4. **Open your browser:**
+   Visit [http://localhost:5173](http://localhost:5173) (default Vite port)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Scripts
 
-Follow these steps:
+- `npm run dev` – Start development server
+- `npm run build` – Build for production
+- `npm run preview` – Preview production build
+- `npm run lint` – Lint code
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Folder Structure
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- `src/pages/` – Main app pages (Dashboard, Fleet, Bookings, etc.)
+- `src/components/` – Reusable UI and layout components
+- `src/hooks/` – Custom React hooks
+- `src/lib/` – Utility functions
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Customization & Deployment
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+- Easily customizable via Tailwind and shadcn/ui.
+- Ready for deployment on any static hosting (Vercel, Netlify, etc.).
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/99d0231b-99ee-4f24-916e-39aedfecd3a9) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+© 2024 Luxe Wheels Insight Dashboard. All rights reserved.
