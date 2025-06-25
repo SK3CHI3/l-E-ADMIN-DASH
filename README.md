@@ -34,9 +34,7 @@ L & E Insight Dashboard is a comprehensive management platform designed for car 
 ## Getting Started
 
 1. **Clone the repository:**
-   ```sh
-   git clone <YOUR_GIT_URL>
-   cd luxe-wheels-insight-dashboard
+   ```copy link above
    ```
 2. **Install dependencies:**
    ```sh
