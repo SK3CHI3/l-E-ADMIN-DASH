@@ -1,58 +1,51 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Car, Plane, User, CreditCard, Clock } from 'lucide-react';
-
-const activities = [
-  {
-    id: 1,
-    type: 'booking',
-    title: 'New helicopter booking: Bell 407 for Peter Mwangi',
-    time: '2 minutes ago',
-    status: 'confirmed',
-    icon: Plane,
-    color: 'bg-purple-500',
-  },
-  {
-    id: 2,
-    type: 'payment',
-    title: 'Payment received: KSh 480,000 from Grace Wanjiku (Helicopter)',
-    time: '15 minutes ago',
-    status: 'completed',
-    icon: CreditCard,
-    color: 'bg-green-500',
-  },
-  {
-    id: 3,
-    type: 'booking',
-    title: 'New car booking: Toyota Prado for John Kamau',
-    time: '1 hour ago',
-    status: 'confirmed',
-    icon: Car,
-    color: 'bg-blue-500',
-  },
-  {
-    id: 4,
-    type: 'user',
-    title: 'New customer registration: Mary Njeri',
-    time: '2 hours ago',
-    status: 'verified',
-    icon: User,
-    color: 'bg-indigo-500',
-  },
-  {
-    id: 5,
-    type: 'booking',
-    title: 'Helicopter booking completed: Robinson R44 for David Kiptoo',
-    time: '3 hours ago',
-    status: 'completed',
-    icon: Plane,
-    color: 'bg-orange-500',
-  },
-];
+import api from '../lib/api';
 
 export function RecentActivity() {
+  const [activities, setActivities] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchActivities = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await api.get('/admin/dashboard/recent-activity');
+        setActivities(res.data.activities || []);
+      } catch (err) {
+        setError('Failed to fetch recent activities');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchActivities();
+  }, []);
+
+  if (loading) return <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-lg">
+    <CardHeader>
+      <div className="h-6 bg-gray-200 rounded w-1/3"></div>
+    </CardHeader>
+    <CardContent>
+      <div className="space-y-4">
+        {[...Array(5)].map((_, i) => (
+          <div key={i} className="flex items-start space-x-4 p-3">
+            <div className="h-8 w-8 bg-gray-200 rounded-lg"></div>
+            <div className="flex-1 space-y-2">
+              <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+              <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </CardContent>
+  </Card>;
+  
+  if (error) return <div className="text-red-500 p-6">{error}</div>;
+
   return (
     <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-lg">
       <CardHeader>

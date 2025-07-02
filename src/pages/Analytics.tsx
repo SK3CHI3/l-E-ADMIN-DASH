@@ -1,47 +1,46 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
 import { DashboardHeader } from '@/components/DashboardHeader';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { PieChart, TrendingUp, Users, Activity } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, BarChart, Bar } from 'recharts';
+import api from '../lib/api';
 
 const Analytics = () => {
-  const analyticsStats = [
-    { title: 'Customer Retention', value: '89%', change: '+5%', icon: Users },
-    { title: 'Avg. Booking Duration', value: '4.2 days', change: '+0.3', icon: Activity },
-    { title: 'Fleet Utilization', value: '78%', change: '+12%', icon: PieChart },
-    { title: 'Customer Satisfaction', value: '4.7/5', change: '+0.2', icon: TrendingUp },
-  ];
+  const [analyticsStats, setAnalyticsStats] = useState<any[]>([]);
+  const [utilizationData, setUtilizationData] = useState<any[]>([]);
+  const [customerData, setCustomerData] = useState<any[]>([]);
+  const [bookingTrends, setBookingTrends] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const utilizationData = [
-    { day: 'Mon', utilization: 85, maintenance: 5, available: 10 },
-    { day: 'Tue', utilization: 78, maintenance: 8, available: 14 },
-    { day: 'Wed', utilization: 92, maintenance: 3, available: 5 },
-    { day: 'Thu', utilization: 88, maintenance: 6, available: 6 },
-    { day: 'Fri', utilization: 95, maintenance: 2, available: 3 },
-    { day: 'Sat', utilization: 72, maintenance: 10, available: 18 },
-    { day: 'Sun', utilization: 65, maintenance: 12, available: 23 },
-  ];
+  useEffect(() => {
+    const fetchAnalytics = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const [statsRes, utilRes, custRes, trendsRes] = await Promise.all([
+          api.get('/admin/analytics/stats'),
+          api.get('/admin/analytics/utilization'),
+          api.get('/admin/analytics/customers'),
+          api.get('/admin/analytics/booking-trends'),
+        ]);
+        setAnalyticsStats(statsRes.data.stats || []);
+        setUtilizationData(utilRes.data.utilization || []);
+        setCustomerData(custRes.data.customers || []);
+        setBookingTrends(trendsRes.data.trends || []);
+      } catch (err) {
+        setError('Failed to fetch analytics data');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchAnalytics();
+  }, []);
 
-  const customerData = [
-    { month: 'Jan', new: 45, returning: 78, total: 123 },
-    { month: 'Feb', new: 52, returning: 82, total: 134 },
-    { month: 'Mar', new: 48, returning: 89, total: 137 },
-    { month: 'Apr', new: 61, returning: 95, total: 156 },
-    { month: 'May', new: 55, returning: 102, total: 157 },
-    { month: 'Jun', new: 68, returning: 108, total: 176 },
-  ];
-
-  const bookingTrends = [
-    { time: '6:00', bookings: 12 },
-    { time: '9:00', bookings: 45 },
-    { time: '12:00', bookings: 78 },
-    { time: '15:00', bookings: 65 },
-    { time: '18:00', bookings: 92 },
-    { time: '21:00', bookings: 34 },
-  ];
+  if (loading) return <div className="p-6">Loading analytics data...</div>;
+  if (error) return <div className="p-6 text-red-500">{error}</div>;
 
   return (
     <SidebarProvider>

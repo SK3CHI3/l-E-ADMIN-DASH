@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
 import { DashboardHeader } from '@/components/DashboardHeader';
@@ -7,22 +6,33 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Trophy, Star, Gift, Award, TrendingUp } from 'lucide-react';
+import api from '../lib/api';
 
 const Loyalty = () => {
-  const loyaltyStats = [
-    { title: 'Total Members', value: '2,847', change: '+12%', icon: Trophy },
-    { title: 'Points Issued', value: '1.2M', change: '+8%', icon: Star },
-    { title: 'Rewards Redeemed', value: '456', change: '+15%', icon: Gift },
-    { title: 'Active Tiers', value: '4', change: '0%', icon: Award },
-  ];
+  const [loyaltyStats, setLoyaltyStats] = useState<any[]>([]);
+  const [topMembers, setTopMembers] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const topMembers = [
-    { name: 'John Smith', points: 15420, tier: 'Platinum', totalSpent: '£12,500' },
-    { name: 'Emily Davis', points: 12890, tier: 'Gold', totalSpent: '£9,800' },
-    { name: 'Sarah Johnson', points: 10560, tier: 'Gold', totalSpent: '£8,200' },
-    { name: 'Mike Wilson', points: 8790, tier: 'Silver', totalSpent: '£6,500' },
-    { name: 'David Brown', points: 7320, tier: 'Silver', totalSpent: '£5,800' },
-  ];
+  useEffect(() => {
+    const fetchLoyalty = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const [statsRes, topRes] = await Promise.all([
+          api.get('/admin/loyalty/stats'),
+          api.get('/admin/loyalty/top-members'),
+        ]);
+        setLoyaltyStats(statsRes.data.stats || []);
+        setTopMembers(topRes.data.topMembers || []);
+      } catch (err) {
+        setError('Failed to fetch loyalty data');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchLoyalty();
+  }, []);
 
   const getTierColor = (tier: string) => {
     switch (tier) {
@@ -32,6 +42,9 @@ const Loyalty = () => {
       default: return 'bg-blue-100 text-blue-800';
     }
   };
+
+  if (loading) return <div className="p-6">Loading loyalty data...</div>;
+  if (error) return <div className="p-6 text-red-500">{error}</div>;
 
   return (
     <SidebarProvider>

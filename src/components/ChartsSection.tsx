@@ -1,35 +1,52 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
-
-const revenueData = [
-  { month: 'Jan', revenue: 45000, bookings: 120 },
-  { month: 'Feb', revenue: 52000, bookings: 135 },
-  { month: 'Mar', revenue: 48000, bookings: 128 },
-  { month: 'Apr', revenue: 61000, bookings: 156 },
-  { month: 'May', revenue: 55000, bookings: 142 },
-  { month: 'Jun', revenue: 67000, bookings: 168 },
-];
-
-const fleetData = [
-  { category: 'Economy', count: 68, color: '#3B82F6' },
-  { category: 'Luxury', count: 45, color: '#8B5CF6' },
-  { category: 'SUV', count: 32, color: '#10B981' },
-  { category: 'Sports', count: 11, color: '#F59E0B' },
-];
-
-const bookingTrends = [
-  { day: 'Mon', bookings: 45 },
-  { day: 'Tue', bookings: 52 },
-  { day: 'Wed', bookings: 38 },
-  { day: 'Thu', bookings: 65 },
-  { day: 'Fri', bookings: 78 },
-  { day: 'Sat', bookings: 85 },
-  { day: 'Sun', bookings: 62 },
-];
+import api from '../lib/api';
 
 export function ChartsSection() {
+  const [revenueData, setRevenueData] = useState<any[]>([]);
+  const [fleetData, setFleetData] = useState<any[]>([]);
+  const [bookingTrends, setBookingTrends] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchChartData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const [revenueRes, fleetRes, trendsRes] = await Promise.all([
+          api.get('/admin/dashboard/revenue'),
+          api.get('/admin/dashboard/fleet'),
+          api.get('/admin/dashboard/booking-trends'),
+        ]);
+        setRevenueData(revenueRes.data.revenue || []);
+        setFleetData(fleetRes.data.fleet || []);
+        setBookingTrends(trendsRes.data.trends || []);
+      } catch (err) {
+        setError('Failed to fetch chart data');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchChartData();
+  }, []);
+
+  if (loading) return <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    {[...Array(3)].map((_, i) => (
+      <Card key={i} className="animate-pulse">
+        <CardHeader>
+          <div className="h-6 bg-gray-200 rounded w-1/2"></div>
+        </CardHeader>
+        <CardContent>
+          <div className="h-64 bg-gray-200 rounded"></div>
+        </CardContent>
+      </Card>
+    ))}
+  </div>;
+  
+  if (error) return <div className="text-red-500 p-6">{error}</div>;
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <Card className="lg:col-span-2 bg-white/80 backdrop-blur-sm border-0 shadow-lg">

@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
 import { DashboardHeader } from '@/components/DashboardHeader';
@@ -8,58 +7,30 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { MessageSquare, Search, Reply, Archive, Star, Clock } from 'lucide-react';
+import api from '../lib/api';
 
 const Messages = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('all');
+  const [messages, setMessages] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const messages = [
-    { 
-      id: 1, 
-      customer: 'John Smith', 
-      subject: 'Issue with BMW 7 Series booking', 
-      preview: 'Hi, I had an issue with my recent booking. The car had a minor scratch...', 
-      time: '2 hours ago', 
-      status: 'unread', 
-      priority: 'high' 
-    },
-    { 
-      id: 2, 
-      customer: 'Sarah Johnson', 
-      subject: 'Excellent service feedback', 
-      preview: 'I wanted to thank you for the exceptional service. The Mercedes was perfect...', 
-      time: '5 hours ago', 
-      status: 'read', 
-      priority: 'low' 
-    },
-    { 
-      id: 3, 
-      customer: 'Mike Wilson', 
-      subject: 'Booking modification request', 
-      preview: 'Could I please extend my rental period by 2 days? I will pay the additional...', 
-      time: '1 day ago', 
-      status: 'replied', 
-      priority: 'medium' 
-    },
-    { 
-      id: 4, 
-      customer: 'Emily Davis', 
-      subject: 'Question about luxury package', 
-      preview: 'What does the luxury package include? I am interested in upgrading...', 
-      time: '2 days ago', 
-      status: 'unread', 
-      priority: 'medium' 
-    },
-    { 
-      id: 5, 
-      customer: 'David Brown', 
-      subject: 'Payment confirmation needed', 
-      preview: 'I need a receipt for my recent payment. Can you please send it to...', 
-      time: '3 days ago', 
-      status: 'archived', 
-      priority: 'low' 
-    },
-  ];
+  useEffect(() => {
+    const fetchMessages = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await api.get('/admin/messages');
+        setMessages(res.data.messages || []);
+      } catch (err) {
+        setError('Failed to fetch messages');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchMessages();
+  }, []);
 
   const getStatusColor = (status: string) => {
     switch (status) {

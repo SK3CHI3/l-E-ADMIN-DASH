@@ -1,45 +1,52 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Gauge, Trophy, Star, Zap } from 'lucide-react';
-
-const stats = [
-  {
-    title: 'Fleet Utilization',
-    value: 78,
-    target: 85,
-    icon: Gauge,
-    color: 'text-blue-600',
-    bgColor: 'bg-blue-100',
-  },
-  {
-    title: 'Customer Satisfaction',
-    value: 94,
-    target: 95,
-    icon: Star,
-    color: 'text-yellow-600',
-    bgColor: 'bg-yellow-100',
-  },
-  {
-    title: 'Loyalty Program',
-    value: 67,
-    target: 75,
-    icon: Trophy,
-    color: 'text-purple-600',
-    bgColor: 'bg-purple-100',
-  },
-  {
-    title: 'System Performance',
-    value: 99,
-    target: 99,
-    icon: Zap,
-    color: 'text-green-600',
-    bgColor: 'bg-green-100',
-  },
-];
+import api from '../lib/api';
 
 export function QuickStats() {
+  const [stats, setStats] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await api.get('/admin/dashboard/quick-stats');
+        setStats(res.data.stats || []);
+      } catch (err) {
+        setError('Failed to fetch quick stats');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchStats();
+  }, []);
+
+  if (loading) return <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-lg">
+    <CardHeader>
+      <div className="h-6 bg-gray-200 rounded w-1/3"></div>
+    </CardHeader>
+    <CardContent className="space-y-6">
+      {[...Array(4)].map((_, i) => (
+        <div key={i} className="space-y-2">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <div className="h-8 w-8 bg-gray-200 rounded-lg"></div>
+              <div className="h-4 bg-gray-200 rounded w-24"></div>
+            </div>
+            <div className="h-4 bg-gray-200 rounded w-8"></div>
+          </div>
+          <div className="h-2 bg-gray-200 rounded"></div>
+        </div>
+      ))}
+    </CardContent>
+  </Card>;
+  
+  if (error) return <div className="text-red-500 p-6">{error}</div>;
+
   return (
     <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-lg">
       <CardHeader>
